@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | FarmFresh</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f3fef3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #3a3a3a;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    header {
+      position: relative;
+      text-align: center;
+      font-size: 1.8rem;
+      color: #4caf50;
+      margin-bottom: 15px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #4caf50;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #388e3c;
+    }
+
+    main {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    h2 {
+      color: #4caf50;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    label {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #555;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #4caf50;
+      box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #388e3c;
+      transform: scale(1.02);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    #success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.checkmark-circle svg {
+  width: 80px;
+  height: 80px;
+  stroke: #4caf50;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawCheck 0.7s forwards;
+}
+
+.checkmark-circle p {
+  margin-top: 20px;
+  color: #4caf50;
+  font-weight: 600;
+  font-size: 1.2rem;
+  animation: fadeIn 1s ease 0.5s forwards;
+  opacity: 0;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FarmFresh - Sign Up 🍏</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="signup-form">
+      <h2>Create Your Account</h2>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" required minlength="6" />
+
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" required />
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </main>
+
+  <!-- ✅ Success overlay -->
+<div id="success-overlay">
+  <div class="checkmark-circle">
+    <svg viewBox="0 0 52 52">
+      <path d="M14 27 l10 10 l20 -20" />
+    </svg>
+    <p>Account created! Redirecting to login...</p>
+  </div>
+</div>
+
+  <script>
+    const signupForm = document.getElementById('signup-form');
+
+    signupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      const user = { name, email, username, password };
+
+      localStorage.setItem('user', JSON.stringify(user));
+     // Show success animation
+document.getElementById('success-overlay').style.display = 'flex';
+
+// Redirect to login after 2 seconds
+setTimeout(() => {
+  window.location.href = 'login.html';
+}, 2000);
+
+    });
+  </script>
+</body>
+</html>

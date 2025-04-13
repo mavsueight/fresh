@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organic - FarmFresh</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #e8f5e9, #ffffff);
+      color: #333;
+      transition: background 0.3s ease;
+    }
+  
+    .container {
+      width: 85%;
+      margin: 40px auto;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+  
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  
+    h1 {
+      font-size: 3em;
+      margin-bottom: 30px;
+      color: #388e3c;
+      font-weight: 600;
+    }
+  
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin: 30px 0;
+      animation: fadeIn 0.8s ease;
+    }
+  
+    .backButton, .cartButton {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1em;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+  
+    .backButton:hover, .cartButton:hover {
+      background-color: #388e3c;
+      transform: scale(1.05);
+    }
+  
+    .productGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+      padding: 25px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 1s ease-in;
+    }
+  
+    .productCard {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeInCard 0.5s ease forwards;
+    }
+  
+    .productCard:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+  
+    @keyframes fadeInCard {
+      to { opacity: 1; }
+    }
+  
+    .productCard img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+  
+    .productCard img:hover {
+      transform: scale(1.05);
+    }
+  
+    .productCard h3 {
+      margin: 15px 0 10px;
+      font-size: 1.4em;
+      color: #2e7d32;
+    }
+  
+    .productCard p {
+      font-size: 1em;
+      margin: 5px 0;
+    }
+  
+    .productCard .price {
+      color: #43a047;
+      font-size: 1.3em;
+      font-weight: 600;
+    }
+  
+    .productCard .addToCart {
+      background-color: #66bb6a;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      border-radius: 8px;
+      margin-top: 12px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+  
+    .productCard .addToCart:hover {
+      background-color: #43a047;
+      transform: scale(1.05);
+    }
+  
+    .quantityControl {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+  
+    .quantityControl button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+    }
+  
+    .quantityControl button:hover {
+      background-color: #2e7d32;
+    }
+  
+    .quantityControl span.quantity {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  
+    .totalPrice {
+      margin-top: 8px;
+      font-size: 1.1em;
+      color: #388e3c;
+      font-weight: 500;
+    }
+
+    .toast-message {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  animation: slideIn 0.4s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+    <!-- Back to Home Button -->
+    <div class="buttons">
+      <a href="index.html" class="backButton">Back to Home</a>
+      <a href="cart.html" class="cartButton">Go to Cart</a>
+    </div>
+
+    <h1>Organic</h1>
+    <div class="productGrid organic">
+      <!-- Products will be dynamically loaded here from products.js -->
+    </div>
+  </div>
+  
+  <script src="products.js"></script>
+  <script src="toast.js"></script>
+  <script>
+    // Sample product data for organic (replace with dynamic data from products.js)
+    const products = {
+      organic: [
+        { name: 'Organic Red Rice', image: 'path/to/redrice.jpg', description: 'Healthy and nutritious organic red rice', price: 90.00 },
+        { name: 'Organic Bananas', image: 'path/to/bananas.jpg', description: 'Fresh and sweet organic bananas', price: 50.00 },
+        { name: 'Organic Eggs', image: 'path/to/eggs.jpg', description: 'Farm-fresh organic eggs', price: 120.00 },
+        { name: 'Organic Kale', image: 'path/to/kale.jpg', description: 'Rich in nutrients, organic kale', price: 80.00 },
+        { name: 'Organic Lettuce', image: 'path/to/lettuce.jpg', description: 'Crisp and fresh organic lettuce', price: 60.00 },
+        { name: 'Organic Lemongrass', image: 'path/to/lemongrass.jpg', description: 'Fragrant and healthy organic lemongrass', price: 40.00 },
+        { name: 'Organic Tomatoes', image: 'path/to/tomatoes.jpg', description: 'Juicy and ripe organic tomatoes', price: 70.00 },
+        { name: 'Organic Honey', image: 'path/to/honey.jpg', description: 'Pure organic honey', price: 150.00 },
+        { name: 'Organic Ginger', image: 'path/to/ginger.jpg', description: 'Fresh and aromatic organic ginger', price: 50.00 },
+        { name: 'Organic Carrots', image: 'path/to/carrots.jpg', description: 'Sweet and crunchy organic carrots', price: 60.00 }
+      ]
+    };
+
+    // Cart to hold added items
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Function to render product cards dynamically for organic
+    const organic = products.organic;
+    const productGrid = document.querySelector('.productGrid.organic');
+
+    organic.forEach(product => {
+      const card = document.createElement('div');
+      card.classList.add('productCard');
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <p class="price">₱${product.price.toFixed(2)}</p>
+        <div class="quantityControl">
+          <button class="decreaseQuantity">–</button>
+          <span class="quantity">1</span>
+          <button class="increaseQuantity">+</button>
+        </div>
+        <p class="totalPrice">Total: ₱${product.price.toFixed(2)}</p>
+        <button class="addToCart">Add to Cart</button>
+      `;
+      productGrid.appendChild(card);
+
+      // Get the buttons and price elements
+      const decreaseButton = card.querySelector('.decreaseQuantity');
+      const increaseButton = card.querySelector('.increaseQuantity');
+      const quantityElement = card.querySelector('.quantity');
+      const totalPriceElement = card.querySelector('.totalPrice');
+      const addToCartButton = card.querySelector('.addToCart');
+
+      let quantity = 1;
+      let totalPrice = product.price;
+
+      // Update total price based on quantity
+      const updateTotalPrice = () => {
+        totalPrice = product.price * quantity;
+        totalPriceElement.textContent = `Total: ₱${totalPrice.toFixed(2)}`;
+      };
+
+      // Decrease quantity
+      decreaseButton.addEventListener('click', () => {
+        if (quantity > 1) {
+          quantity--;
+          quantityElement.textContent = quantity;
+          updateTotalPrice();
+        }
+      });
+
+      // Increase quantity
+      increaseButton.addEventListener('click', () => {
+        quantity++;
+        quantityElement.textContent = quantity;
+        updateTotalPrice();
+      });
+
+      // Add product to cart
+      addToCartButton.addEventListener('click', () => {
+        const cartItem = {
+          name: product.name,
+          price: product.price,
+          quantity: quantity,
+          totalPrice: totalPrice
+        };
+
+        // Check if the product is already in the cart
+        const existingItemIndex = cart.findIndex(item => item.name === cartItem.name);
+        if (existingItemIndex > -1) {
+          // Update the existing product's quantity and total price
+          cart[existingItemIndex].quantity += quantity;
+          cart[existingItemIndex].totalPrice += totalPrice;
+        } else {
+          // Add new product to the cart
+          cart.push(cartItem);
+        }
+
+        // Save the updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        showToast(`${product.name} has been added to your cart!`, 'green', '🛒');
+      });
+    });
+  </script>
+</body>
+</html>
