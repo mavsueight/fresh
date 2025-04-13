@@ -283,16 +283,18 @@
 </div>
 <div id="toast" class="toast"></div>
 <script>
-  document.getElementById('proceed-btn').addEventListener('click', function () {
-    const cartItems = document.querySelectorAll('.cart-item');
-    
-    if (cartItems.length === 0) {
-      showToast('Your cart is empty. You cannot proceed to checkout.', 'toast-warning');
-    } else {
-      // Redirect to checkout if cart has items
-      window.location.href = 'checkout.html';
-    }
-  });
+  document.getElementById('proceed-btn').addEventListener('click', function (e) {
+  e.preventDefault(); // Prevents any default behavior
+
+  const cartItems = document.querySelectorAll('.cart-item');
+  
+  if (cartItems.length === 0) {
+    showToast('Your cart is empty. You cannot proceed to checkout.', 'toast-warning');
+  } else {
+    // Redirect to checkout if cart has items
+    window.location.href = 'checkout.html';
+  }
+});
 
   function showToast(message, type = 'toast-success') {
     const toast = document.querySelector('.toast');
