@@ -12,13 +12,14 @@
     }
 
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f3f4ed;
-      color: #4a4a4a;
-      overflow-x: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #f3f4ed;
+    color: #4a4a4a;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-width: 320px; /* ✅ Add this line */
+  }
 
     header {
       background: linear-gradient(135deg, #88d498, #56ab2f);
@@ -284,6 +285,38 @@
         margin: 10px 0;
       }
     }
+    @media (max-width: 480px) {
+      
+    @media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    padding: 8px 10px;
+    font-size: 1rem;
+  }
+}
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .product-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .product-card p {
+    font-size: 0.95rem;
+  }
+
+  .add-to-cart {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+  }
+}
+
   </style>
 </head>
 <body>
